@@ -78,12 +78,14 @@ class Artifact:
         return bg
     
     async def add_cv(self):
+        return
         cv = f"{float('{:.2f}'.format(self.CRIT_DMG + (self.CRIT_RATE*2)))}CV"
         d = ImageDraw.Draw(self.background)
         x = self.font_20.getlength(cv)
         d.text((int(260-x/2),12), cv, font= self.font_20, fill=(255,255,255,255))
         
     async def add_dmg_and_rate(self,prop_id,value):
+        return
         if prop_id == "FIGHT_PROP_CRITICAL_HURT":
             self.CRIT_DMG += value
         if prop_id == "FIGHT_PROP_CRITICAL":
