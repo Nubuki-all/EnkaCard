@@ -43,7 +43,9 @@ class Artifact:
     def __init__(self, artifact) -> None:
         self.artifact = artifact
         self.CRIT_DMG = 0
+        self.CRIT_DMGT = 0
         self.CRIT_RATE = 0
+        self.CRIT_RATET = 0
         self.props = {}
         self.prop_value = {}
         self.prop_id_counts = defaultdict(int)
@@ -78,18 +80,20 @@ class Artifact:
         return bg
     
     async def add_cv(self):
-        return
         cv = f"{float('{:.2f}'.format(self.CRIT_DMG + (self.CRIT_RATE*2)))}CV"
         d = ImageDraw.Draw(self.background)
         x = self.font_20.getlength(cv)
         d.text((int(260-x/2),12), cv, font= self.font_20, fill=(255,255,255,255))
         
-    async def add_dmg_and_rate(self,prop_id,value):
-        return
+    async def add_dmg_and_rate(self,prop_id,value,mainstat=False):
         if prop_id == "FIGHT_PROP_CRITICAL_HURT":
-            self.CRIT_DMG += value
+            self.CRIT_DMGT += value
+            if not mainstat:
+                self.CRIT_DMG += value
         if prop_id == "FIGHT_PROP_CRITICAL":
-            self.CRIT_RATE += value
+            self.CRIT_RATET += value
+            if not mainstat:
+                self.CRIT_RATE += value
     
     async def add_icon(self):
         
@@ -120,7 +124,7 @@ class Artifact:
         d.text((int(149-x/2),109), level, font= self.font_20, fill=(255,211,91,255))
         self.background.alpha_composite(stars.resize((101,29)),(78,132))
 
-        await self.add_dmg_and_rate(self.artifact.detail.mainstats.prop_id,self.artifact.detail.mainstats.value)
+        await self.add_dmg_and_rate(self.artifact.detail.mainstats.prop_id,self.artifact.detail.mainstats.value,True)
         
     async def add_sub_icon(self,key,x,y,z,d,font_25,i):
         if str(key.type) == "DigitType.PERCENT":
@@ -165,4 +169,4 @@ class Artifact:
         
         
 
-        return {"tcv": float('{:.2f}'.format(self.CRIT_DMG + (self.CRIT_RATE*2))), "img": self.background}
+        return {"tcv": float('{:.2f}'.format(self.CRIT_DMGT + (self.CRIT_RATET*2))), "img": self.background}
