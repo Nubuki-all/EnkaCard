@@ -102,7 +102,7 @@ class Creat:
         self.background.alpha_composite(self.background_skill,(809,656))
         self.background.alpha_composite(self.background_stat, (11,16))
         self.background.alpha_composite(self.background_name_user,(11,1216))
-        self.tcv += self.weapon["tcv"]
+        #self.tcv += self.weapon["tcv"]
         await self.add_tcr()
     
     async def add_tcr(self):
