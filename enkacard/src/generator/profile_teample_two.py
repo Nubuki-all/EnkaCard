@@ -81,7 +81,7 @@ class ProfileCard:
         level = f"{self.lang['lvl']}: {self.profile.level}"
         Wlevel = f"{self.lang['WL']}: {self.profile.world_level}"
         if self.hide:
-            uid  = 'UID: Hide'
+            uid  = 'UID: [Hidden]'
         else:
             uid = f"UID: {self.uid}"
         

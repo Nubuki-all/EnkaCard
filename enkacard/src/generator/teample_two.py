@@ -176,7 +176,7 @@ class Creat:
         d = ImageDraw.Draw(self.background_name_user)
         d.text((0,0), self.name, font= font_13, fill=(255,255,255,200))
         if self.hide:
-            d.text((0,18), "UID: Hide", font= font_13, fill=(255,255,255,200))
+            d.text((0,18), "UID: [Hidden]", font= font_13, fill=(255,255,255,200))
         else:
             d.text((0,18), f"UID: {self.uid}", font= font_13, fill=(255,255,255,200))
     
