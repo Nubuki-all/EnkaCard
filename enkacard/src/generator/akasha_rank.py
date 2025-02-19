@@ -46,22 +46,23 @@ class AkashaCreat:
             
     async def get_rank_akasha(self):
         akaska_info = []
-        if not self.uid in data_akasha:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(api_url.format(uid = self.uid)) as response:
-                    data = await response.json()
-                    for key in data.get("data", []):
-                        calculator = key.get("calculations", {}).get("fit", {})
-                        if calculator:
-                            rank = int(str(calculator.get("ranking", "0")).replace("~", ""))
-                            out = int(calculator.get("outOf", "1"))
-                            percentage = round((rank / out) * 100)
-                            if percentage == 0:
-                                percentage = 1
-                            akaska_info.append({"id": key["characterId"], "rank": rank, "out": out, "precent": percentage})
-                            
-                    data_akasha[self.uid] = akaska_info
-        return data_akasha[self.uid]
+        # if not self.uid in data_akasha:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(api_url.format(uid = self.uid)) as response:
+                data = await response.json()
+                for key in data.get("data", []):
+                    calculator = key.get("calculations", {}).get("fit", {})
+                    if calculator:
+                        rank = int(str(calculator.get("ranking", "0")).replace("~", ""))
+                        out = int(calculator.get("outOf", "1"))
+                        percentage = round((rank / out) * 100)
+                        if percentage == 0:
+                            percentage = 1
+                        akaska_info.append({"id": key["characterId"], "rank": rank, "out": out, "precent": percentage})
+                        
+                # data_akasha[self.uid] = akaska_info
+        return akaska_info
+        # return data_akasha[self.uid]
          
     async def creat_logo(self):
         logo = await _of.akasha
