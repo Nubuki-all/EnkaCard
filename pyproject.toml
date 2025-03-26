@@ -12,7 +12,7 @@ homepage = "https://github.com/DEViantUA/EnkaCard"
 [tool.poetry.dependencies]
 python = "^3.10"
 Pillow = "*"
-"enkanetworkv2.py" = "*"
+"enkanetworkv2.py" = { git = "https://github.com/Nubuki-all/EnkaNetworkV2.py.git", branch = "main" }
 cachetools = "*"
 asyncache  = "*"
 numpy = "*"
