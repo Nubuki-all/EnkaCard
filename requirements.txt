@@ -3,7 +3,7 @@ aiohttp
 asyncio
 cachetools
 cloudpickle
-enkanetworkv2.py
+#enkanetworkv2.py
 python-magic
 python-magic-bin
 matplotlib
@@ -11,3 +11,5 @@ more-itertools
 numpy
 Pillow
 pydantic
+
+git+https://github.com/Nubuki-all/EnkaNetworkV2.py
