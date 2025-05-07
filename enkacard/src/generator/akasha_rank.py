@@ -51,7 +51,10 @@ class AkashaCreat:
             async with session.get(api_url.format(uid = self.uid)) as response:
                 data = await response.json()
                 for key in data.get("data", []):
-                    calculator = key.get("calculations", {}).get("fit", {})
+                    calculations = key.get("calculations", {})
+                    if not calculations:
+                        continue
+                    calculator = calculations.get("fit", {})
                     if calculator:
                         rank = int(str(calculator.get("ranking", "0")).replace("~", ""))
                         out = int(calculator.get("outOf", "1"))
